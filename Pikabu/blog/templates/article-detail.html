@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{ article.title }}</title>
+{% endblock title %}
+
+{% block content %}
+    {% if article %}
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.text }}</p>
+        <p>{{ article.create_date }}</p>
+        <p>Author: {{ article.author }}</p>
+    {% else %}
+        <p>No one article was find</p>
+    {% endif %}
+
+    <h3>Comments</h3>
+    <hr>
+    <form action="" id="add-comment-form" method="post" >
+        {% csrf_token %}
+        {{ form }}
+        <button form="add-comment-form" type="submit" class="btn btn-primary">Add comment</button>
+    </form>
+
+    <hr>
+
+    {% for article in article.comment_set.all %}
+        <p>Author: {{ article.author }}</p>
+        <p>Text: {{ article.text }}</p>
+
+        <hr>
+    {% endfor %}
+
+
+{% endblock content %}

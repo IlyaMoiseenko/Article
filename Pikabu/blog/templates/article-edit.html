@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if article_edit_status %}
+        <p style="color: red">Article was edit</p>
+    {% endif %}
+    {% if article %}
+        <form action="" id="edit" method="post" >
+            {% csrf_token %}
+            {{ form }}
+        </form>
+
+        <button form="edit" type="submit" class="btn btn-primary">Edit</button>
+    {% endif %}
+{% endblock content %}

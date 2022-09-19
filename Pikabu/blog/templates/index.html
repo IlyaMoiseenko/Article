@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Blog</title>
+{% endblock title %}
+
+<div class="container">
+    {% block content %}
+        {% if article_list %}
+            {% for i in article_list %}
+                <div class="list-group">
+                    <a href="{% url 'article-detail' i.pk %}" class="list-group-item list-group-item-action mb-3" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ i.title }}</h5>
+                            <small>{{ i.create_date }}</small>
+                        </div>
+
+                        <p class="mb-1">{{ i.text }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        {% endif%}
+    {% endblock content %}
+</div>
